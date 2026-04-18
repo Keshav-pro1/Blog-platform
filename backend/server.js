@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 const authRoutes = require('./routes/auth');
 const blogRoutes = require('./routes/blogs');
 const commentRoutes = require('./routes/comments');
@@ -34,6 +35,9 @@ pool.connect((err, client, release) => {
   console.log('Connected to PostgreSQL database');
   release();
 });
+
+// Serve uploaded images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Make pool available in routes
 app.set('db', pool);
