@@ -20,11 +20,11 @@ async function runSchema() {
     console.log('Executing schema...');
     await client.query(schema);
 
-    console.log('✅ Schema executed successfully!');
+    console.log(' Schema executed successfully!');
     console.log('Your blog platform is ready to use!');
 
   } catch (error) {
-    console.error('❌ Error executing schema:', error);
+    console.error(' Error executing schema:', error);
   } finally {
     await pool.end();
   }
