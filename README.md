@@ -12,6 +12,65 @@ A full-stack blog platform built with Node.js, Express, React, Vite, and MySQL.
 - Image upload support
 - Responsive UI with Tailwind CSS
 
+## Workflow Diagram
+
+```mermaid
+graph TD
+    A[User Arrives] --> B{Logged In?}
+    B -->|No| C[Login/Register]
+    B -->|Yes| D{User Role?}
+    
+    C --> E[Authenticate]
+    E --> D
+    
+    D -->|Writer/Admin| F[Dashboard]
+    D -->|Regular User| G[Home Page]
+    
+    F --> H{Action?}
+    G --> I{Action?}
+    
+    H -->|Create Blog| J[Write New Blog]
+    H -->|View Blogs| K[Browse Blogs]
+    H -->|Edit/Delete| L[Manage Own Blogs]
+    
+    I -->|View Blogs| K
+    I -->|Read Blog| M[Blog Detail Page]
+    
+    J --> N[Add Title, Content, Category]
+    N --> O[Upload Image]
+    O --> P[Publish Blog]
+    P --> Q[Blog Saved to Database]
+    
+    K --> M
+    M --> R[Display Blog Content & Image]
+    R --> S{User Action?}
+    
+    S -->|Add Comment| T[Write Comment]
+    S -->|View Comments| U[Display All Comments]
+    S -->|Back| K
+    
+    T --> V[Submit Comment]
+    V --> W[Comment Saved to Database]
+    W --> U
+    
+    Q --> X[(Database)]
+    W --> X
+    
+    L --> Y[Select Blog]
+    Y --> Z{Update/Delete?}
+    Z -->|Update| N
+    Z -->|Delete| AA[Remove from Database]
+    AA --> X
+```
+
+**Workflow Overview:**
+- **Authentication**: Users login/register based on their role
+- **Writer/Admin Path**: Access to dashboard with full blog management capabilities
+- **Regular User Path**: Browse and read blogs, add comments
+- **Blog Creation**: Create new blogs with title, content, category, and images
+- **Blog Interaction**: Read blogs, view comments, and add new comments
+- **Blog Management**: Edit or delete own blogs
+
 ## Project Structure
 
 ```
