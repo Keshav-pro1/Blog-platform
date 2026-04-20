@@ -32,7 +32,7 @@ pool.connect((err, client, release) => {
     console.error('Database connection failed:', err);
     return;
   }
-  console.log('Connected to PostgreSQL database');
+  console.log('Connected to MYSQL database');
   release();
 });
 
